@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class EmployeeStatisticsServiceImpl implements EmployeeStatisticsService {
+public class EmployeeStatisticsServiceImpl implements EmployeeStatisticsService {
 
     @Override
     public CommonEmployeesDto extractLongestCommonEmployees(List<EmployeeWorkEntry> workEntries) {

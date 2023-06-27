@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@JsonDeserialize(converter = DateTimeDeserializer.class)
-@JsonSerialize(converter = DateTimeSerializer.class)
+@JsonDeserialize(converter = DateDeserializer.class)
+@JsonSerialize(converter = DateSerializer.class)
 @JacksonAnnotationsInside
-public @interface DateTimeConverter {
+public @interface DateConverter {
 
 }

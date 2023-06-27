@@ -11,10 +11,14 @@ import com.cyecize.summer.areas.validation.annotations.Valid;
 import com.cyecize.summer.areas.validation.constraints.MaxLength;
 import com.cyecize.summer.areas.validation.constraints.MinLength;
 import com.cyecize.summer.areas.validation.constraints.NotNull;
+import com.cyecize.summer.areas.validation.exceptions.ConstraintValidationException;
+import com.cyecize.summer.areas.validation.interfaces.BindingResult;
+import com.cyecize.summer.areas.validation.services.ObjectValidationService;
 import com.cyecize.summer.common.annotations.Controller;
 import com.cyecize.summer.common.annotations.routing.PostMapping;
 import com.cyecize.summer.common.annotations.routing.RequestMapping;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +31,10 @@ public class EmployeeStatisticsController {
 
     private final CSVParser csvParser;
 
+    private final ObjectValidationService objectValidationService;
+
+    private final BindingResult bindingResult;
+
     @PostMapping(Endpoints.PROCESS_LONGEST_COMMON_EMPLOYEES)
     public CommonEmployeesDto processLongestCommonEmployees(@Valid CSVDto fileDto) {
         final List<EmployeeWorkEntry> workEntries = this.csvParser.parse(
@@ -34,15 +42,35 @@ public class EmployeeStatisticsController {
                 EmployeeWorkEntry.class
         );
 
+        this.objectValidationService.validateBindingModel(
+                new EmployeeWorkEntriesDto(workEntries),
+                this.bindingResult
+        );
+
+        if (bindingResult.hasErrors()) {
+            throw new ConstraintValidationException(String.format(
+                    "Object validation completed with %d errors",
+                    bindingResult.getErrors().size())
+            );
+        }
+
         return this.employeeStatisticsService.extractLongestCommonEmployees(workEntries);
     }
 
     @Data
-    static class CSVDto {
+    public static class CSVDto {
 
         @NotNull
         @MinLength(length = 1)
         @MaxLength(length = General.MAX_UPLOAD_FILE_SIZE_BYTES)
         private UploadedFile file;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class EmployeeWorkEntriesDto {
+
+        @Valid
+        private List<EmployeeWorkEntry> workEntries;
     }
 }

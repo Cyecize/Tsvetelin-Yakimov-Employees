@@ -2,16 +2,16 @@ package com.cyecize.app.converters;
 
 import com.cyecize.summer.common.annotations.Component;
 import com.fasterxml.jackson.databind.util.StdConverter;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
-public class DateTimeDeserializer extends StdConverter<String, LocalDateTime> {
+public class DateDeserializer extends StdConverter<String, LocalDate> {
 
     @Override
-    public LocalDateTime convert(String source) {
+    public LocalDate convert(String source) {
         try {
-            return LocalDateTime.parse(source, DateTimeFormatter.ISO_DATE_TIME);
+            return LocalDate.parse(source, DateTimeFormatter.ISO_DATE);
         } catch (Exception ignored) {
         }
 
