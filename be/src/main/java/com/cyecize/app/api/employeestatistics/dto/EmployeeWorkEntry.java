@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 public class EmployeeWorkEntry {
 
-    @NotNull(message = INVALID_VALUE_MSG)
+    @NotNull(message = "Missing or invalid \"Employee Id\"")
     private Integer employeeId;
 
-    @NotNull(message = INVALID_VALUE_MSG)
+    @NotNull(message = "Missing or invalid \"Project Id\"")
     private Integer projectId;
 
-    @NotNull(message = INVALID_VALUE_MSG)
+    @NotNull(message = "Missing or invalid \"Date From\"")
     @DateConverter
     private LocalDate dateFrom;
 

@@ -9,6 +9,7 @@ import com.cyecize.app.constants.General;
 import com.cyecize.summer.areas.routing.interfaces.UploadedFile;
 import com.cyecize.summer.areas.validation.annotations.Valid;
 import com.cyecize.summer.areas.validation.constraints.MaxLength;
+import com.cyecize.summer.areas.validation.constraints.MediaType;
 import com.cyecize.summer.areas.validation.constraints.MinLength;
 import com.cyecize.summer.areas.validation.constraints.NotNull;
 import com.cyecize.summer.areas.validation.exceptions.ConstraintValidationException;
@@ -63,6 +64,7 @@ public class EmployeeStatisticsController {
         @NotNull
         @MinLength(length = 1)
         @MaxLength(length = General.MAX_UPLOAD_FILE_SIZE_BYTES, message = "File too big!")
+        @MediaType(value = General.TEXT_CSV, message = "Invalid file type!")
         private UploadedFile file;
     }
 

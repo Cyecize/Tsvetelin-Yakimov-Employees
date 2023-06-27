@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,7 +25,9 @@ public class CommonEmployeesDto {
 
     @JsonProperty("commonProjects")
     public Collection<CommonProjectDto> getCommonProjects() {
-        return this.commonProjects.values();
+        return this.commonProjects.values().stream()
+                .sorted((o1, o2) -> Long.compare(o2.getElapsedDays(), o1.getElapsedDays()))
+                .collect(Collectors.toList());
     }
 
     public void addElapsedTime(int projectId, long timeInDays) {
