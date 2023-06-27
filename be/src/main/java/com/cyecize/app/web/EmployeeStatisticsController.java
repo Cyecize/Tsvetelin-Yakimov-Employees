@@ -62,7 +62,7 @@ public class EmployeeStatisticsController {
 
         @NotNull
         @MinLength(length = 1)
-        @MaxLength(length = General.MAX_UPLOAD_FILE_SIZE_BYTES)
+        @MaxLength(length = General.MAX_UPLOAD_FILE_SIZE_BYTES, message = "File too big!")
         private UploadedFile file;
     }
 

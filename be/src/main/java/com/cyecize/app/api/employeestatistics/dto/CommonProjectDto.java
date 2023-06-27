@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class CommonProjectDto {
 
-    private int projectId;
-    private int elapsedDays;
+    private final int projectId;
+    private long elapsedDays = 0;
 }
