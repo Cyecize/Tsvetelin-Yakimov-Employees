@@ -1,0 +1,29 @@
+<div class="m-auto w-50">
+
+  <h3 class="text-warning" *ngIf="errors.length">There were errors during the process!</h3>
+
+  <form [formGroup]="form" (ngSubmit)="onFormSubmit()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Select a CSV file
+        <input (change)="handleFileInput($event.target)" formControlName="file" type="file">
+      </label>
+    </div>
+
+    <div class="form-group text-right d-flex justify-content-end">
+      <div class="p-1">
+        <button class="btn btn-outline-dark" (click)="downloadCSV()" type="button" >Sample CSV</button>
+      </div>
+      <div class="p-1">
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Upload</button>
+      </div>
+    </div>
+  </form>
+
+  <app-field-error [errors]="errors" fieldName=""></app-field-error>
+  <app-field-error [errors]="errors" fieldName="employeeId"></app-field-error>
+  <app-field-error [errors]="errors" fieldName="projectId"></app-field-error>
+  <app-field-error [errors]="errors" fieldName="dateFrom"></app-field-error>
+  <app-field-error [errors]="errors" fieldName="dateTo"></app-field-error>
+  <app-field-error [errors]="errors" fieldName="file"></app-field-error>
+
+</div>

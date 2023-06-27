@@ -1,1 +1,4 @@
-<h1>We do be the most common employees</h1>
+<div class="mt-2">
+  <app-form *ngIf="!displayingData" (formSubmitted)="onFormSubmitted($event)" [errors]="errors"></app-form>
+  <app-data-grid (uploadNewFileClick)="showForm()" [data]="responseData" *ngIf="displayingData"></app-data-grid>
+</div>

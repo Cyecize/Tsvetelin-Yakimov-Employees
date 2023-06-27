@@ -1,0 +1,26 @@
+<div class="m-auto">
+  <div class="text-right">
+    <button type="button" class="btn btn-outline-info" (click)="onUploadNewFileClick()">Upload new file</button>
+  </div>
+  <p>Employees with ids {{data?.employee1Id}} and {{data?.employee2Id}} have worked together {{data?.elapsedDays}} days in total.</p>
+  <div class="mt-2">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Employee ID #1</th>
+        <th scope="col">Employee ID #2</th>
+        <th scope="col">Project ID</th>
+        <th scope="col">Days worked</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let proj of data?.commonProjects">
+        <th>{{data?.employee1Id}}</th>
+        <td>{{data?.employee2Id}}</td>
+        <td>{{proj.projectId}}</td>
+        <td>{{proj.elapsedDays}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
