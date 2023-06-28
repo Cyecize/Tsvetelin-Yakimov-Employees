@@ -43,3 +43,7 @@ Sample output: 143, 218, 8
     - dd-MM-yyyy
     - yyyy-MM-dd
     - Designed to be easily upgraded to support much more.
+
+## Build Docker image
+- docker build -t ty-empl:1.0 .
+- docker run -d --name ty-empls -p 7091:8000 ty-empl:1.0

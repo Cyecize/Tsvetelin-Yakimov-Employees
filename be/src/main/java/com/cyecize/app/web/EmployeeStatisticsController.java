@@ -1,5 +1,8 @@
 package com.cyecize.app.web;
 
+import static com.cyecize.app.constants.General.APPLICATION_VND_MS_EXCEL;
+import static com.cyecize.app.constants.General.TEXT_CSV;
+
 import com.cyecize.app.api.csv.CSVParser;
 import com.cyecize.app.api.employeestatistics.EmployeeStatisticsService;
 import com.cyecize.app.api.employeestatistics.dto.CommonEmployeesDto;
@@ -64,7 +67,7 @@ public class EmployeeStatisticsController {
         @NotNull
         @MinLength(length = 1)
         @MaxLength(length = General.MAX_UPLOAD_FILE_SIZE_BYTES, message = "File too big!")
-        @MediaType(value = General.TEXT_CSV, message = "Invalid file type!")
+        @MediaType(value = {TEXT_CSV, APPLICATION_VND_MS_EXCEL}, message = "Invalid file type!")
         private UploadedFile file;
     }
 
